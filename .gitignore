@@ -8,3 +8,7 @@ Servers
 .recommenders
 .settings
 .classpath
+.metadata
+.recommenders
+RemoteSystemsTempFiles
+Servers
