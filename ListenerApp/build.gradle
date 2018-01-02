@@ -1,0 +1,40 @@
+apply plugin: 'java'
+apply plugin: 'eclipse-wtp'
+
+group = 'com.YOUR_APP_NAME'
+version = '0.0.1-SNAPSHOT'
+
+ext {
+  hibernateVersion = "5.2.1.Final"
+  jacksonVersion = "2.8.5"
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+eclipse {
+  classpath {
+    downloadSources = true
+  }
+}
+
+sourceSets {
+  main {
+    java.srcDir "src"
+    resources.srcDir 'src/resources'
+  }
+  test {
+    java.srcDir 'test'
+    resources.srcDir 'src'
+  }
+ }
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  compile "com.fasterxml.jackson.core:jackson-core:$jacksonVersion"
+  compile "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
+  compile group: 'com.1stleg', name: 'jnativehook', version: '2.1.0'
+}

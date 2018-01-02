@@ -1,0 +1,26 @@
+package listener;
+
+import org.jnativehook.keyboard.NativeKeyEvent;
+import org.jnativehook.keyboard.NativeKeyListener;
+
+public class GlobalKeyListener implements NativeKeyListener {
+
+	@Override
+	public void nativeKeyTyped(NativeKeyEvent nativeEvent) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void nativeKeyPressed(NativeKeyEvent nativeEvent) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void nativeKeyReleased(NativeKeyEvent nativeEvent) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,0 +1,67 @@
+package data;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import entities.Button;
+import entities.Preset;
+import entities.User;
+
+@Repository
+@Transactional
+public class TrackerDAOImpl implements TrackerDAO {
+	
+	@PersistenceContext
+	private EntityManager em;
+
+	@Override
+	public List<Preset> index(int userId) {
+		return null;
+	}
+
+	@Override
+	public Preset showPreset(int presId) {
+		return null;
+	}
+
+	@Override
+	public boolean deletePreset(int presId) {
+		return false;
+	}
+
+	@Override
+	public boolean deleteButton(int buttonId) {
+		return false;
+	}
+
+	@Override
+	public Preset createPreset(int userId, String json) {
+		return null;
+	}
+
+	@Override
+	public Button createButton(int presId, String json) {
+		return null;
+	}
+
+	@Override
+	public User createUser(String json) {
+		return null;
+	}
+
+	@Override
+	public Preset updatePreset(int presId, String json) {
+		return null;
+	}
+
+	@Override
+	public User updateUser(int userId, String json) {
+		return null;
+	}
+	
+}

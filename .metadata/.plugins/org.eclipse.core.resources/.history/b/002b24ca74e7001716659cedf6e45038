@@ -1,0 +1,49 @@
+package listener;
+
+import java.util.Timer;
+
+import org.jnativehook.GlobalScreen;
+import org.jnativehook.NativeHookException;
+import org.jnativehook.keyboard.NativeKeyEvent;
+import org.jnativehook.keyboard.NativeKeyListener;
+
+public class GlobalKeyListener implements NativeKeyListener {
+	private int count;
+	private int key;
+	private UpdateDB update;
+	
+	public GlobalKeyListener(int key, int user, int preset, int button) {
+		super();
+		this.key = key;
+		this.count = 0;
+		this.update = new UpdateDB(user, preset, button);
+	}
+	
+	public void nativeKeyPressed(NativeKeyEvent e) {
+		Timer timer = new Timer();
+		timer.schedule(update, 50000);
+		System.out.println("Key Pressed: " + NativeKeyEvent.getKeyText(e.getKeyCode()));
+		System.out.println("Key Pressed: " + e.getKeyCode());
+
+		if (e.getKeyCode() == NativeKeyEvent.VC_ESCAPE) {
+			try {
+				GlobalScreen.unregisterNativeHook();
+				System.exit(1);
+			} catch (NativeHookException ex) {
+				ex.printStackTrace();
+			}
+		}
+		if (e.getKeyCode() == key) {
+			count++;
+		}
+	}
+
+	public void nativeKeyReleased(NativeKeyEvent e) {
+//		System.out.println("Key Released: " + NativeKeyEvent.getKeyText(e.getKeyCode()));
+//		System.out.println("Key Released: " + e.getKeyCode());
+	}
+
+	public void nativeKeyTyped(NativeKeyEvent e) {
+//		System.out.println("Key Typed: " + e.getKeyText(e.getKeyCode()));
+	}
+}

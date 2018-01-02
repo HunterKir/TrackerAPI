@@ -1,0 +1,26 @@
+package listener;
+
+import org.jnativehook.GlobalScreen;
+import org.jnativehook.NativeHookException;
+
+public class ListenerExe {
+	public static void main(String[] args) {
+		try {
+			GlobalScreen.registerNativeHook();
+		}
+		catch (NativeHookException ex) {
+			System.err.println("There was a problem registering the native hook.");
+			System.err.println(ex.getMessage());
+
+			System.exit(1);
+		}
+		int keyToCount;
+		int user = Integer.parseInt(args[args.length - 2]);
+		int preset = Integer.parseInt(args[args.length - 1]);
+		int button = Integer.parseInt(args[args.length]);
+		for (int i = 0; i < args.length - 3; i++) {
+			keyToCount = Integer.parseInt(args[i]);
+			GlobalScreen.addNativeKeyListener(new GlobalKeyListener(keyToCount));
+		}
+	}
+}
