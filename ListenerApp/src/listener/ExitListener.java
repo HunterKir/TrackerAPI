@@ -1,31 +1,26 @@
 package listener;
 
-import java.util.Timer;
 
 import org.jnativehook.keyboard.NativeKeyEvent;
 import org.jnativehook.keyboard.NativeKeyListener;
 
-public class GlobalKeyListener implements NativeKeyListener {
+public class ExitListener implements NativeKeyListener {
 	private int key;
-	private UpdateDB update;
-	private Timer timer = new Timer();
+	public boolean flag;
 	
-	public GlobalKeyListener(int key, int user, int preset, int button) {
+	
+	public ExitListener(int key) {
 		this.key = key;
-		this.update = new UpdateDB(user, preset, button);
-		System.out.println("listener created");
-		timer.schedule(update, 0, 30000);
+		this.flag = false;
+		System.out.println("exit listener created");
 	}
 	
 	public void nativeKeyPressed(NativeKeyEvent e) {
 		if (e.getKeyCode() == key) {
-			update.updateCount();
+			flag = true;
 		}
 	}
 	
-	public void forceUpdate() {
-		update.run();
-	}
 
 	public void nativeKeyReleased(NativeKeyEvent e) {
 //		System.out.println("Key Released: " + NativeKeyEvent.getKeyText(e.getKeyCode()));

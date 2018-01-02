@@ -1,7 +1,0 @@
-package listener;
-
-import org.jnativehook.keyboard.NativeKeyEvent;
-
-public class GlobalKeyListener extends NativeKeyEvent {
-
-}

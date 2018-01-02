@@ -1,9 +1,0 @@
-package data;
-
-import java.util.List;
-
-import entities.Preset;
-
-public interface TrackerDAO {
-	public List<Preset> index(int id);
-}

@@ -1,9 +1,13 @@
 package listener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.jnativehook.GlobalScreen;
 import org.jnativehook.NativeHookException;
 
 public class ListenerExe {
+	private static List<GlobalKeyListener> list = new ArrayList<>();
 	public static void main(String[] args) {
 		try {
 			GlobalScreen.registerNativeHook();
@@ -19,8 +23,26 @@ public class ListenerExe {
 			int preset = Integer.parseInt(args[i + 1]);
 			int button = Integer.parseInt(args[i + 2]);
 			int keyToCount = Integer.parseInt(args[i + 3]);
-			GlobalScreen.addNativeKeyListener(new GlobalKeyListener(keyToCount, user, preset, button));
+			GlobalKeyListener gkl = new GlobalKeyListener(keyToCount, user, preset, button);
+			GlobalScreen.addNativeKeyListener(gkl);
+			list.add(gkl);
 		}
+		ExitListener exit = new ExitListener(1);
+		GlobalScreen.addNativeKeyListener(exit);
 		System.out.println("loading complete");
+		while (true) {
+			try {
+				Thread.sleep(1);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			if (exit.flag) {
+				System.out.println("   Shutting Down");
+				for (GlobalKeyListener globalKeyListener : list) {
+					globalKeyListener.forceUpdate();
+				}
+				System.exit(1);
+			}
+		}
 	}
 }
