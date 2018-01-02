@@ -1,7 +1,0 @@
-127.0.0.1 - - [22/Dec/2017:17:37:28 -0700] "GET / HTTP/1.1" 404 994
-0:0:0:0:0:0:0:1 - - [22/Dec/2017:17:37:34 -0700] "GET /MVCProject/ HTTP/1.1" 404 38
-0:0:0:0:0:0:0:1 - - [22/Dec/2017:17:37:46 -0700] "GET /MVCProject/api/users/2 HTTP/1.1" 500 46
-0:0:0:0:0:0:0:1 - - [22/Dec/2017:17:37:51 -0700] "GET /MVCProject/api/users/2 HTTP/1.1" 500 46
-0:0:0:0:0:0:0:1 - - [22/Dec/2017:17:37:52 -0700] "GET /MVCProject/api/users/2 HTTP/1.1" 500 46
-0:0:0:0:0:0:0:1 - - [22/Dec/2017:17:38:05 -0700] "GET /MVCProject/api/users/2/presets HTTP/1.1" 200 12
-0:0:0:0:0:0:0:1 - - [22/Dec/2017:17:38:14 -0700] "GET /MVCProject/api/users/1/presets HTTP/1.1" 200 152
