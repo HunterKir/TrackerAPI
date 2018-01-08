@@ -1,6 +1,6 @@
 package listener;
 
-public class Button {
+public class Key {
 	private int id;
 	
 	private int value;
@@ -61,7 +61,7 @@ public class Button {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Button other = (Button) obj;
+		Key other = (Key) obj;
 		if (id != other.id)
 			return false;
 		return true;

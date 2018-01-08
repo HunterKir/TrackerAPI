@@ -1,6 +1,5 @@
 package entities;
 
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -9,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class User {
@@ -20,6 +21,7 @@ public class User {
 	
 	private String password;
 	
+	@JsonBackReference
 	@OneToMany(mappedBy="user", fetch=FetchType.EAGER)
 	private Set<Preset> presets;
 

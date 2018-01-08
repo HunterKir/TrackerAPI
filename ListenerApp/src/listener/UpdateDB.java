@@ -42,7 +42,7 @@ public class UpdateDB extends TimerTask {
 	        }
 	        response = sb.toString();
 	        ObjectMapper mapper = new ObjectMapper();
-	        Button b = mapper.readValue(response, Button.class);
+	        Key b = mapper.readValue(response, Key.class);
 	        count += b.getCount();
 		} catch (Exception e) {
 			e.printStackTrace();

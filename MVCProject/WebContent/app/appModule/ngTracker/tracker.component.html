@@ -1,0 +1,43 @@
+<div class="" ng-show="!vm.selectedPreset">
+	<h4>Your Presets</h4>
+	<ul>
+		<li ng-repeat="preset in vm.presets">
+			<span ng-click="vm.selectedPreset = preset">{{preset.name}}</span>
+		</li>
+	</ul>
+	<form>
+		<input type="text" name="" value="" ng-model="newPreset.name">
+		<input type="submit" name="" value="New Preset" ng-click="vm.createPreset(1, newPreset); newPreset = {}">
+	</form>
+</div>
+<div class="" ng-show="vm.selectedPreset && !vm.changePresetName">
+	{{vm.selectedPreset.name}} <button type="button" name="button" ng-click="vm.changePresetName = true">Change Name</button>
+	<ul>
+		<div ng-repeat="button in vm.selectedPreset.buttons">
+			<li>{{button.name}} : Times pressed: {{button.count}}</li>
+			<button type="button" name="button" ng-click="vm.deleteButton(vm.selectedPreset.user.id, vm.selectedPreset.id, button.id)">Delete</button>
+		</div>
+	</ul>
+	<button type="button" name="button" ng-click="vm.selectedPreset = null">Go Back</button>
+	<button type="button" name="button" ng-click="vm.addButton = true">Add Button</button>
+	<button type="button" name="button" ng-click="vm.deletePreset(vm.selectedPreset.user.id, vm.selectedPreset.id); vm.selectedPreset = null;">Delete Preset</button>
+</div>
+<div class="" ng-show="vm.selectedPreset && vm.changePresetName">
+	<form>
+		<input type="text" name="" value="" ng-model="vm.selectedPreset.name">
+		<input type="submit" name="" value="Save" ng-click="vm.updatePreset(vm.selectedPreset.user.id, vm.selectedPreset.id, vm.selectedPreset); vm.changePresetName = false">
+	</form>
+	<ul>
+		<li ng-repeat="button in vm.selectedPreset.buttons">{{button.name}} : Times pressed: {{button.count}}</li>
+		<button type="button" name="button" ng-click="vm.deleteButton(vm.selectedPreset.user.id, vm.selectedPreset.id, button.id)">Delete</button>
+	</ul>
+	<button type="button" name="button" ng-click="vm.selectedPreset = null">Go Back</button>
+</div>
+<div class="" ng-show="vm.addButton">
+	<form>
+		<select ng-model="button">
+			<option ng-repeat="code in vm.keyCodes" value="{{code}}">{{code.name}}</option>
+		</select>
+		<input type="submit" name="" value="Add" ng-click="vm.createButton(vm.selectedPreset.user.id, vm.selectedPreset.id, button); vm.addButton = false">
+	</form>
+</div>

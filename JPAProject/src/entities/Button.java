@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Button {
@@ -19,7 +19,9 @@ public class Button {
 	
 	private int count;
 	
-	@JsonIgnore
+	private String name;
+	
+	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name="preset_id")
 	private Preset preset;
@@ -48,6 +50,14 @@ public class Button {
 		this.count = count;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public Preset getPreset() {
 		return preset;
 	}
@@ -55,6 +65,7 @@ public class Button {
 	public void setPreset(Preset preset) {
 		this.preset = preset;
 	}
+	
 
 	@Override
 	public String toString() {

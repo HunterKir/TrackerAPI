@@ -28,12 +28,12 @@ public class TrackerController {
 	}
 	
 	@RequestMapping(path="users/{userId}/presets/{presId}", method=RequestMethod.GET)
-	public Preset show(@PathVariable int presId) {
+	public Preset show(@PathVariable int userId, @PathVariable int presId) {
 		return dao.showPreset(presId);
 	}
 	
 	@RequestMapping(path="users/{userId}/presets/{presId}", method=RequestMethod.DELETE)
-	public void deletePreset(@PathVariable int presId, HttpServletResponse res) {
+	public void deletePreset(@PathVariable int userId, @PathVariable int presId, HttpServletResponse res) {
 		if (dao.deletePreset(presId)) {
 			res.setStatus(200);
 		}
@@ -43,7 +43,7 @@ public class TrackerController {
 	}
 	
 	@RequestMapping(path="users/{userId}/presets/{presId}/buttons/{buttonId}", method=RequestMethod.DELETE)
-	public void deleteButton(@PathVariable int buttonId, HttpServletResponse res) {
+	public void deleteButton(@PathVariable int userId, @PathVariable int presId, @PathVariable int buttonId, HttpServletResponse res) {
 		if (dao.deleteButton(buttonId)) {
 			res.setStatus(200);
 		}
@@ -65,7 +65,7 @@ public class TrackerController {
 	}
 	
 	@RequestMapping(path="users/{userId}/presets/{presId}/buttons", method=RequestMethod.POST)
-	public Button createButton(@PathVariable int presId, @RequestBody String json, HttpServletResponse res) {
+	public Button createButton(@PathVariable int userId, @PathVariable int presId, @RequestBody String json, HttpServletResponse res) {
 		Button b = dao.createButton(presId, json);
 		if (b == null) {
 			res.setStatus(400);
@@ -89,7 +89,7 @@ public class TrackerController {
 	}
 	
 	@RequestMapping(path="users/{userId}/presets/{presId}", method=RequestMethod.PUT)
-	public Preset updatePreset(@PathVariable int presId, @RequestBody String json, HttpServletResponse res) {
+	public Preset updatePreset(@PathVariable int userId, @PathVariable int presId, @RequestBody String json, HttpServletResponse res) {
 		Preset p = dao.updatePreset(presId, json);
 		if (p == null) {
 			res.setStatus(400);
@@ -112,12 +112,12 @@ public class TrackerController {
 	}
 	
 	@RequestMapping(path="users/{userId}/presets/{presId}/buttons/{buttonId}", method=RequestMethod.GET)
-	public Button getButton(@PathVariable int buttonId) {
+	public Button getButton(@PathVariable int userId, @PathVariable int presId, @PathVariable int buttonId) {
 		return dao.getButton(buttonId);
 	}
 	
 	@RequestMapping(path="users/{userId}/presets/{presId}/buttons/{buttonId}", method=RequestMethod.PUT)
-	public Button updateButtton(@PathVariable int buttonId, @RequestBody String json, HttpServletResponse res) {
+	public Button updateButtton(@PathVariable int userId, @PathVariable int presId, @PathVariable int buttonId, @RequestBody String json, HttpServletResponse res) {
 		Button b = dao.updateButton(buttonId, json);
 		if (b == null) {
 			res.setStatus(400);

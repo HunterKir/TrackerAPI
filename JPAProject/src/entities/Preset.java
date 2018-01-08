@@ -1,6 +1,5 @@
 package entities;
 
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -13,7 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Preset {
@@ -23,11 +23,12 @@ public class Preset {
 	
 	private String name;
 	
-	@JsonIgnore
+	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
 	
+	@JsonBackReference
 	@OneToMany(mappedBy="preset", fetch=FetchType.EAGER, cascade={CascadeType.PERSIST, CascadeType.REMOVE})
 	private Set<Button> buttons;
 
@@ -95,7 +96,5 @@ public class Preset {
 			return false;
 		return true;
 	}
-	
-	
 	
 }
